@@ -191,6 +191,26 @@ const checkCommand = (message, requiredPermissions) => {
   return hasPermissions;
 };
 
+/**
+ * @param {Discord.Client} client
+ * @param {string} activity
+ * @returns {void}
+ */
+const setActivity = (client, activity) => {
+  client
+    .setActivity(activity)
+    .then(() =>
+      createLog(
+        "Activity for '" +
+          client.user.username +
+          "' was set to '" +
+          bot.activity +
+          "'!"
+      )
+    )
+    .catch((err) => createError(err));
+};
+
 module.exports = {
   isBot: isBot,
   checkCommand: checkCommand,
@@ -200,4 +220,5 @@ module.exports = {
   warn: createWarn,
   sendEmbedLog: createEmbedLog,
   sendWelcomeMessage: sendWelcomeMessage,
+  setActivity: setActivity,
 };

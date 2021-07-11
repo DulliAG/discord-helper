@@ -22,11 +22,12 @@
 - [warn](#warn)
 - [sendEmbedLog](#sendembedlog)
 - [sendWelcomeMessage](#sendwelcomemessage)
+- [setActivity](#setactivity)
 
 ### isBot
 
 ```js
-const Discord = require("discord.js")
+const Discord = require("discord.js");
 const helper = require('@dulliag/discord-helper');
 
 helper.isBot(member: Discord.GuildMember) : void;
@@ -35,7 +36,7 @@ helper.isBot(member: Discord.GuildMember) : void;
 ### checkCommand
 
 ```js
-const Discord = require("discord.js")
+const Discord = require("discord.js");
 const helper = require('@dulliag/discord-helper');
 
 helper.checkCommand(message: Discord.Message, requiredPermissions: string[]) : boolean;
@@ -44,7 +45,7 @@ helper.checkCommand(message: Discord.Message, requiredPermissions: string[]) : b
 ### hasPermission
 
 ```js
-const Discord = require("discord.js")
+const Discord = require("discord.js");
 const helper = require('@dulliag/discord-helper');
 
 helper.hasPermission(member: Discord.GuildMember, requiredPermissions: string[]) : boolean;
@@ -53,7 +54,7 @@ helper.hasPermission(member: Discord.GuildMember, requiredPermissions: string[])
 ### log
 
 ```js
-const Discord = require("discord.js")
+const Discord = require("discord.js");
 const helper = require('@dulliag/discord-helper');
 
 helper.log(message: string) : void;
@@ -62,7 +63,7 @@ helper.log(message: string) : void;
 ### error
 
 ```js
-const Discord = require("discord.js")
+const Discord = require("discord.js");
 const helper = require('@dulliag/discord-helper');
 
 helper.error(message: string) : void;
@@ -71,7 +72,7 @@ helper.error(message: string) : void;
 ### warn
 
 ```js
-const Discord = require("discord.js")
+const Discord = require("discord.js");
 const helper = require('@dulliag/discord-helper');
 
 helper.warn(message: string) : void;
@@ -80,7 +81,7 @@ helper.warn(message: string) : void;
 ### sendEmbedLog
 
 ```js
-const Discord = require("discord.js")
+const Discord = require("discord.js");
 const helper = require('@dulliag/discord-helper');
 
 helper.sendEmbedLog(
@@ -96,7 +97,7 @@ helper.sendEmbedLog(
 ### sendWelcomeMessage
 
 ```js
-const Discord = require("discord.js")
+const Discord = require("discord.js");
 const helper = require('@dulliag/discord-helper');
 
 helper.sendWelcomeMessage(
@@ -104,6 +105,18 @@ helper.sendWelcomeMessage(
   postInChannelId: string,
   newMember: Discord.GuildMember
 ) : void;
+```
+
+### setActivity
+
+```js
+const Discord = require('discord.js');
+const client = new Discord.Client();
+const helper = require('@dulliag/discord-helper');
+
+client.on("ready" () => {
+  helper.setActivity(client, "Use @dulliag/discord-helper");
+});
 ```
 
 ## How to publish
