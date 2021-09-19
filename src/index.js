@@ -210,6 +210,31 @@ const setActivity = (client, activity) => {
     .catch((err) => createError(err));
 };
 
+/**
+ *
+ * @param {string} filePath
+ * @returns {boolean}
+ */
+const credentialFileExists = (filePath) => {
+  return fs.existsSync(filePath);
+};
+
+/**
+ *
+ * @param {string} filePath DEFAULT: "./credentials.json"
+ * @param {object} content
+ * @returns {boolean}
+ */
+const createCredentialFile = (
+  filePath = './credentials.json',
+  content = { bot: { token: 'ENTER_TOKEN', clientId: 'ENTER_CLIENT_ID' } }
+) => {
+  if (typeof content !== 'object') return false;
+  const stringifiedContent = JSON.stringify(content);
+  fs.writeFileSync(filePath, stringifiedContent);
+  return credentialFileExists(filePath);
+};
+
 module.exports = {
   isBot: isBot,
   checkCommand: checkCommand,
@@ -220,4 +245,6 @@ module.exports = {
   sendEmbedLog: createEmbedLog,
   sendWelcomeMessage: sendWelcomeMessage,
   setActivity: setActivity,
+  credentialFileExists: credentialFileExists,
+  createCredentialFile: createCredentialFile,
 };
