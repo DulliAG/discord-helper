@@ -12,7 +12,7 @@
     "start": "node index.js"
   },
   "author": "tklein1801",
-  "license": "ISX",
+  "license": "ISC",
   "homepage": "https://dulliag.de",
   "repository": {
     "type": "git",
