@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
-const { logs, commands } = require('./config.json');
+const { logs } = require('./config.json');
+const fs = require('fs');
 
 const today = new Date();
 
@@ -167,28 +168,26 @@ const hasPermission = (member, requiredPermissions) => {
 /**
  * @deprecated
  * @param {Discord.Message} message
- * @param {string[]} requiredPermissions
+ * @param {string[]} requiredPermissions Contains permissions which are allowed to use this execute this command
+ * @param {string} prefix DEFAULT: "!"; Defines the command prefix.
+ * @param {string[]} blacklist
  * @returns {boolean}
  */
-const checkCommand = (message, requiredPermissions) => {
-  const prefix = commands.prefix,
-    prefixLength = prefix.length;
-
+const checkCommand = (
+  message,
+  requiredPermissions,
+  prefix = '!',
+  blacklist = []
+) => {
   if (isBot(message.member)) return; // Check if the message author is an Discord-bot
 
   createLog(`${message.author.username} tried command '${message.content}'`);
 
-  if (message.content.substr(0, prefixLength) !== prefix) return; // Check if the command is an actuall bot command
+  if (message.content.substr(0, prefix.length) !== prefix) return; // Check if the command is an actuall bot command
 
-  if (commands.blacklist.includes(prefix)) return; // Check if the command-prefix is blacklisted
+  if (blacklist.includes(prefix)) return; // Check if the command-prefix is blacklisted
 
-  var hasPermissions = true;
-
-  requiredPermissions.forEach((perm) => {
-    if (!message.member.hasPermission(perm)) hasPermissions = false;
-  });
-
-  return hasPermissions;
+  return hasPermission(message.member, requiredPermissions);
 };
 
 /**

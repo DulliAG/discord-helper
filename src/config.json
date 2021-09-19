@@ -6,9 +6,5 @@
       "warning": 16738816,
       "error": 16711680
     }
-  },
-  "commands": {
-    "prefix": "!db",
-    "blacklist": ["!ama", "!st", "!sb"]
   }
 }
