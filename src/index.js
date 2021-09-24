@@ -2,12 +2,11 @@ const Discord = require('discord.js');
 const { logs } = require('./config.json');
 const fs = require('fs');
 
-const today = new Date();
-
 /**
  * @param {string} message
  */
 const createLog = (message) => {
+  const today = new Date();
   console.log(`[LOG:${today.toISOString()}] ${message}`);
 };
 
@@ -15,6 +14,7 @@ const createLog = (message) => {
  * @param {string} message
  */
 const createError = (message) => {
+  const today = new Date();
   console.error(`[ERROR:${today.toISOString()}] ${message}`);
 };
 
@@ -22,6 +22,7 @@ const createError = (message) => {
  * @param {string} message
  */
 const createWarn = (message) => {
+  const today = new Date();
   console.warn(`[WARN:${today.toISOString()}] ${message}`);
 };
 
