@@ -257,5 +257,5 @@ module.exports = {
   setActivity: setActivity,
   credentialFileExists: credentialFileExists,
   createCredentialFile: createCredentialFile,
-  wait: sleep,
+  wait: wait,
 };
