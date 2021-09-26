@@ -23,6 +23,9 @@
 - [sendEmbedLog](#sendembedlog)
 - [sendWelcomeMessage](#sendwelcomemessage)
 - [setActivity](#setactivity)
+- [credentialFileExists](#credentialFileExists)
+- [createCredentialFile](#createCredentialFile)
+- [wait](#wait)
 
 ### isBot
 
@@ -115,6 +118,81 @@ const client = new Discord.Client();
 const helper = require('@dulliag/discord-helper');
 
 client.on("ready" () => {
+  helper.setActivity(client, "Use @dulliag/discord-helper");
+});
+```
+
+### credentialFileExists
+
+```js
+const Discord = require('discord.js');
+const client = new Discord.Client();
+const helper = require('@dulliag/discord-helper');
+
+// This equals the default content
+// You can use any pattern u want
+const credentialContent = {
+  bot: {
+    token: "ENTER_TOKEN",
+    clientId: "ENTER_CLIENT_ID",
+  }
+};
+if (!helper.credentialFileExists("./credentials.json")) {
+  helper.error("There is no credential file given. You should create an...");
+  process.exit(0); // Stop the bot
+}
+
+const { bot } = require("./credentials.json");
+
+client.on("ready" () => {
+  helper.setActivity(client, "Use @dulliag/discord-helper");
+});
+
+client.login(bot.token);
+```
+
+### createCredentialFile
+
+```js
+const Discord = require('discord.js');
+const client = new Discord.Client();
+const helper = require('@dulliag/discord-helper');
+
+// This equals the default content
+// You can use any pattern u want
+const credentialContent = {
+  bot: {
+    token: "ENTER_TOKEN",
+    clientId: "ENTER_CLIENT_ID",
+  }
+};
+if (!helper.credentialFileExists("./credentials.json")) {
+  const success = helper.createCredentialFile(settings.credentials, credentialContent);
+  success
+    ? helper.log("Credential file created!")
+    : helper.error("Creation of credential file failed!");
+  process.exit(0); // Stop the bot
+}
+
+const { bot } = require("./credentials.json");
+
+client.on("ready" () => {
+  helper.setActivity(client, "Use @dulliag/discord-helper");
+});
+
+client.login(bot.token);
+```
+
+### wait
+
+```js
+const Discord = require('discord.js');
+const client = new Discord.Client();
+const helper = require('@dulliag/discord-helper');
+
+client.on("ready" () => {
+  helper.log("Bot started!");
+  helper.wait(10 * 1000); // wait 10s before updating the activity
   helper.setActivity(client, "Use @dulliag/discord-helper");
 });
 ```
