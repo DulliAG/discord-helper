@@ -236,6 +236,15 @@ const createCredentialFile = (
   return credentialFileExists(filePath);
 };
 
+/**
+ * Wait for an x-amount milliseconds before executing code
+ * @param {number} time Time in milliseconds
+ * @returns {Promise}
+ */
+const wait = (time) => {
+  return new Promise((res) => setTimeout(res, time));
+};
+
 module.exports = {
   isBot: isBot,
   checkCommand: checkCommand,
@@ -248,4 +257,5 @@ module.exports = {
   setActivity: setActivity,
   credentialFileExists: credentialFileExists,
   createCredentialFile: createCredentialFile,
+  wait: sleep,
 };
