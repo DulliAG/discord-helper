@@ -245,6 +245,15 @@ const wait = (time) => {
   return new Promise((res) => setTimeout(res, time));
 };
 
+/**
+ *
+ * @param {Discord.Client} client
+ * @returns {Map<String, Discord.Guild>}
+ */
+const getFeaturedServers = (client) => {
+  return client.guilds.cache;
+};
+
 module.exports = {
   isBot: isBot,
   checkCommand: checkCommand,
@@ -258,4 +267,5 @@ module.exports = {
   credentialFileExists: credentialFileExists,
   createCredentialFile: createCredentialFile,
   wait: wait,
+  getFeaturedServers: getFeaturedServers,
 };

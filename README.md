@@ -23,9 +23,10 @@
 - [sendEmbedLog](#sendembedlog)
 - [sendWelcomeMessage](#sendwelcomemessage)
 - [setActivity](#setactivity)
-- [credentialFileExists](#credentialFileExists)
-- [createCredentialFile](#createCredentialFile)
+- [credentialFileExists](#credentialfileexists)
+- [createCredentialFile](#createcredentialfile)
 - [wait](#wait)
+- [getFeaturedServers](#getfeaturedservers)
 
 ### isBot
 
@@ -195,6 +196,25 @@ client.on("ready" () => {
   helper.wait(10 * 1000); // wait 10s before updating the activity
   helper.setActivity(client, "Use @dulliag/discord-helper");
 });
+```
+
+### getFeaturedServers
+
+> NOTE: You could get client.guilds.cache instead of using helper.getFeaturedServers(client);
+
+```js
+const Discord = require('discord.js');
+const client = new Discord.Client();
+const helper = require('@dulliag/discord-helper');
+
+client.on("ready" () => {
+  helper.log("Bot started!");
+  helper.setActivity(client, "Use @dulliag/discord-helper");
+  helper.getFeaturedServers(client).forEach((guild) => {
+    helper.log("Bot is running on guild " + guild.name);
+  })
+});
+
 ```
 
 ## How to publish
