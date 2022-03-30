@@ -82,35 +82,6 @@ const helper = require('@dulliag/discord-helper');
 helper.warn(message: string) : void;
 ```
 
-### sendEmbedLog
-
-```js
-const Discord = require("discord.js");
-const helper = require('@dulliag/discord-helper');
-
-helper.sendEmbedLog(
-  client: Discord.Client,
-  postInChannelId: string,
-  type = 'info': string,
-  causedByGuildMemberId: string,
-  causedBy: string,
-  message: string
-) : void;
-```
-
-### sendWelcomeMessage
-
-```js
-const Discord = require("discord.js");
-const helper = require('@dulliag/discord-helper');
-
-helper.sendWelcomeMessage(
-  client: Discord.Client,
-  postInChannelId: string,
-  newMember: Discord.GuildMember
-) : void;
-```
-
 ### setActivity
 
 ```js
