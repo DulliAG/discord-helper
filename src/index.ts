@@ -7,23 +7,23 @@ import {
 } from 'discord.js';
 import { existsSync, writeFileSync } from 'fs';
 
-const log = (message: string) =>
+export const log = (message: string) =>
   console.log(`[LOG:${new Date().toISOString()}] ${message}`);
 
-const info = (message: string) =>
+export const info = (message: string) =>
   console.log(`[INFO:${new Date().toISOString()}] ${message}`);
 
-const warn = (message: string) =>
+export const warn = (message: string) =>
   console.log(`[WARN:${new Date().toISOString()}] ${message}`);
 
-const error = (message: string) =>
+export const error = (message: string) =>
   console.log(`[ERROR:${new Date().toISOString()}] ${message}`);
 
-const isBot = (member: GuildMember) => {
+export const isBot = (member: GuildMember) => {
   return member.user.bot;
 };
 
-const hasPermission = (
+export const hasPermission = (
   member: GuildMember,
   requiredPermissions: PermissionResolvable[]
 ): boolean => {
@@ -37,7 +37,7 @@ const hasPermission = (
 /**
  * @deprecated
  */
-const checkCommand = (
+export const checkCommand = (
   message: Message,
   requiredPermissions: PermissionResolvable[],
   prefix: string = '!',
@@ -52,15 +52,15 @@ const checkCommand = (
   return hasPermission(message.member, requiredPermissions);
 };
 
-const setActivity = (client: Client, activity: ActivityOptions) => {
+export const setActivity = (client: Client, activity: ActivityOptions) => {
   return client.user.setActivity(activity);
 };
 
-const credentialFileExists = (filePath: string) => {
+export const credentialFileExists = (filePath: string) => {
   return existsSync(filePath);
 };
 
-const createCredentialFile = (
+export const createCredentialFile = (
   filePath: string = './credentials.json',
   content: object = {
     bot: { token: 'ENTER_TOKEN', clientId: 'ENTER_CLIENT_ID' },
@@ -71,25 +71,10 @@ const createCredentialFile = (
   return credentialFileExists(filePath);
 };
 
-const wait = (time: number): Promise<void> => {
+export const wait = (time: number): Promise<void> => {
   return new Promise((res) => setTimeout(res, time));
 };
 
-const getFeaturedServers = (client: Client) => {
+export const getFeaturedServers = (client: Client) => {
   return client.guilds.cache;
-};
-
-module.exports = {
-  ...log,
-  ...info,
-  ...warn,
-  ...error,
-  ...isBot,
-  ...checkCommand,
-  ...hasPermission,
-  ...setActivity,
-  ...credentialFileExists,
-  ...createCredentialFile,
-  ...wait,
-  ...getFeaturedServers,
 };
